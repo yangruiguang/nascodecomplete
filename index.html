@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Nebulas Code Complete</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <link href="css/landing-page.min.css" rel="stylesheet">
+		
+		<link href="vendor/prism/prism.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+		
+		
+    <!-- Navigation -->
+    <nav class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Nebulas Code Complete</a>
+				<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" href="#">首页</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="template.html">模板</a>
+					</li>
+					<li class="nav-item" id="new">
+						<a class="nav-link"href="publish.html">新建</a>
+					</li>
+				</ul>
+      </div>
+    </nav>
+
+    <!-- Masthead -->
+    <header class="masthead text-white text-center">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+					<div class="col-xl-9 mx-auto mb-5">
+						<!--<img src="img/nebulas.png" />-->
+            <h1>星云代码大全</h1>
+          </div>
+          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto mb-4">
+              <div class="form-row">
+								<div class="col-3">
+									<select class="custom-select custom-select-lg mb-auto" id="selector">
+										<option value="none" selected>编程语言</option>
+										<option value="ccplus">C/C++</option>
+										<option value="java">Java</option>
+										<option value="python">Python</option>
+										<option value="csharp">C#</option>
+										<option value="js">JavaScript</option>
+										<option value="php">PHP</option>
+									</select>
+								</div>
+                <div class="col-6 col-md-6">
+                  <input type="text" class="form-control form-control-lg" id="tag" placeholder="请输入标签">
+                </div>
+                <div class="col-3 col-md-3">
+                  <button class="btn btn-block btn-lg btn-info" id="search">找码</button>
+                </div>
+              </div>
+          </div>
+					<div class="col-xl-9 mx-auto alert alert-danger" id="select-alert" style="display:none;text-align: center;">
+								请选择编程语言
+					</div>
+					<div class="col-xl-9 mx-auto alert alert-danger" id="input-alert" style="display:none;text-align: center;">
+								请输入标签
+					</div>
+					<div class="col-xl-9 mx-auto alert alert-info" id="result-alert" style="display:none;text-align: center;">
+								没找到有关此标签的代码~
+					</div>
+					<div class="col-xl-9 mx-auto alert alert-success" id="result-info" style="display:none;text-align: center;">
+								找码成功~
+					</div>
+        </div>
+      </div>
+    </header>
+		
+		<section>
+			<div class="container">
+				<div class="mb-3"></div>
+				<h3 class="text-center">找码结果</h3>
+				<hr class="star-light mb-4">
+				<div class="col-lg-7 mx-auto mb-5">
+					<pre id="codefield" class="form-control" style="white-space: pre-line;word-wrap: break-word;;">
+
+					</pre>
+					<button id="copyButton" class="btn" data-clipboard-target="#codefield" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Copied!">
+						<img src="img/content-copy.svg" alt="Copy to clipboard"/>
+					</button>
+				</div>
+			</div>
+		</section>
+		
+
+    <footer class="footer bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item">
+                <a href="#">About</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="#">Contact</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="#">Terms of Use</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="#">Privacy Policy</a>
+              </li>
+            </ul>
+            <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2018. All Rights Reserved.</p>
+          </div>
+          <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item mr-3">
+                <h3>Powered by</h3>
+              </li>
+              <li class="list-inline-item mr-3">
+                <img src="img/nebulas.png">
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div> 
+    </footer>
+
+		<script src="vendor/popover/tooltip.min.js"></script>
+		<script src="vendor/popover/popper.min.js"></script>
+		<script src="vendor/clipboard/dist/clipboard.min.js"></script>
+		<script src="vendor/prism/prism.js"></script>
+		<script type="text/javascript" src="lib/nebulas.js"></script>
+		<script type="text/javascript" src="lib/nebPay.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript">
+			var clipboard = new ClipboardJS('#copyButton');
+			clipboard.on('success', function(e) {
+				e.clearSelection();
+				$("[data-toggle='popover']").popover();
+				$("[data-toggle='popover']").on('mouseleave', function(){
+					$("[data-toggle='popover']").popover('hide');
+				});
+			});
+			clipboard.on('error', function(e) {
+				
+			});
+			
+		</script>
+		<script type="text/javascript">
+			var address = "n1t121VcT2b8wahXWM5ZtJbZK1A6XAxbQC2";
+			var nebulas = require("nebulas"), Account = Account, neb = new nebulas.Neb();
+			neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"))
+			
+			var NebPay = require("nebpay");
+			var nebPay = new NebPay();
+			var serialNumber
+			
+			$("#search").click(function(){
+					if ($("#selector").val() == "none") {
+            $("select-alert").show();
+						$("#select-alert").fadeTo(2000, 500).slideUp(500, function(){
+								$("#select-alert").hide();
+						});
+            return;
+					}
+					if (!$("#tag").val()) {
+            $("input-alert").show();
+						$("#input-alert").fadeTo(2000, 500).slideUp(500, function(){
+								$("#input-alert").hide();
+						});
+            return;
+					}
+					var from = address
+					var value = "0";
+					var nonce = "0"
+					var gas_price = "1000000"
+					var gas_limit = "2000000"
+					var callFunction = "get";
+					var callArgs = "[\"" + $("#selector").val() +"\",\""+ $("#tag").val() + "\"]";
+					var contract = {
+							"function": callFunction,
+							"args": callArgs
+					}
+					
+					neb.api.call(from, address, value, nonce, gas_price, gas_limit, contract).then(function (resp) {
+						var result = resp.result;
+						console.log(result);
+						if (result === 'null') {
+                $("#result-alert").show();
+								$("#result-alert").fadeTo(2000, 500).slideUp(500, function(){
+									$("#result-alert").hide();
+								});
+                return;
+            }
+						$("result-info").show();
+						$("#result-info").fadeTo(2000, 500).slideUp(500, function(){
+								$("#result-info").hide();
+						});
+						result = JSON.parse(result);
+						$(document).ready(function(){
+							var lan = result.language;
+							var lan_class;
+							if(lan == 'ccplus') {
+								lan_class = 'clike';
+							} else if(lan == 'java') {
+								lan_class = 'java';
+							} else if(lan == 'csharp') {
+								lan_class = 'csharp';
+							} else if(lan == 'python') {
+								lan_class = 'python';
+							} else if(lan == 'js') {
+								lan_class = 'javascript';
+							} else if(lan == 'php') {
+								lan_class = 'php';
+							}
+							var pre_content = '<code class="language-'+lan_class+'">'+result.content+'</code>';
+							$("#codefield").html(pre_content);
+							Prism.highlightAll();
+							console.log(pre_content);
+							
+						});
+
+						$("#selector").val("none");
+						$("#tag").val("");
+
+					}).catch(function (err) {
+            console.log("error :" + err.message);
+					})
+				});
+				$("#new").click(function(){
+						localStorage.setItem("clean","yes");
+				});
+
+
+			
+	</script>
+
+  </body>
+
+</html>

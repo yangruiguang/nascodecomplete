@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Nebulas Code Complete</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <link href="css/landing-page.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Nebulas Code Complete</a>
+				<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">首页</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="#">模板</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="publish.html" id="nav_publish">新建</a>
+					</li>
+				</ul>
+      </div>
+    </nav>
+		
+		<section class="portfolio" id="portfolio">
+      <div class="container">
+        <hr class="star-dark mb-4">
+        <div class="row mb-4">
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#" id="ccplus">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+
+                </div>
+              </div>
+              <img class="img-fluid" src="img/portfolio/ccplus.png" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#" id="java">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+
+                </div>
+              </div>
+              <img class="img-fluid" src="img/portfolio/java.png" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#" id="csharp">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+
+                </div>
+              </div>
+              <img class="img-fluid" src="img/portfolio/csharp.png" alt="">
+            </a>
+          </div>
+				</div>
+				<div class="row mb-4">
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#" id="python">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+
+                </div>
+              </div>
+              <img class="img-fluid" src="img/portfolio/python.png" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#" id="js">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+
+                </div>
+              </div>
+              <img class="img-fluid" src="img/portfolio/js.png" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#" id="php">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+
+                </div>
+              </div>
+              <img class="img-fluid" src="img/portfolio/php.png" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>  
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript">
+			$(function(){  
+				$("#ccplus").click(function(){
+					localStorage.setItem("clean","no");
+					localStorage.setItem("language","ccplus");
+					localStorage.setItem("code","void function() {\n	printf('Hello World');\n}");
+					$(location).attr("href","publish.html");
+				});
+				$("#java").click(function(){  
+					localStorage.setItem("clean","no");
+					localStorage.setItem("language","java");
+					localStorage.setItem("code","public void function() {\n	System.out.println('Hello World');\n}");
+					$(location).attr("href","publish.html");
+				});
+				$("#csharp").click(function(){  
+					localStorage.setItem("clean","no");
+					localStorage.setItem("language","csharp");
+					localStorage.setItem("code","void function() {\n	Console.Write('Hello World');\n}");
+					$(location).attr("href","publish.html");
+				});
+				$("#python").click(function(){  
+					localStorage.setItem("clean","no");
+					localStorage.setItem("language","python");
+					localStorage.setItem("code","def function():\n	print 'Hello World'");
+					$(location).attr("href","publish.html");
+				});
+				$("#js").click(function(){  
+					localStorage.setItem("clean","no");
+					localStorage.setItem("language","js");
+					localStorage.setItem("code","function myFunction(){\n	console.log('Hellow World');\n}");
+					$(location).attr("href","publish.html"); 
+				});
+				$("#php").click(function(){  
+					localStorage.setItem("clean","no");
+					localStorage.setItem("language","php");
+					localStorage.setItem("code","<?php\n	function myFunction() {\n		echo 'Hello World';\n	}\n?>");
+					$(location).attr("href","publish.html");
+				});
+				
+				$("#nav_publish").click(function(){
+					localStorage.setItem("clean","yes");
+				});
+			});
+
+		
+	  </script>
+
+  </body>
+
+</html>

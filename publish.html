@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Nebulas Code Complete</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <link href="css/landing-page.min.css" rel="stylesheet">
+		
+		<link href="vendor/codemirror-5.38.0/lib/codemirror.css" rel="stylesheet">
+		<link href="vendor/codemirror-5.38.0/theme/cobalt.css" rel="stylesheet">
+		<link href="vendor/codemirror-5.38.0/theme/dracula.css" rel="stylesheet">
+		<link href="vendor/codemirror-5.38.0/theme/base16-light.css" rel="stylesheet">
+
+
+  </head>
+
+  <body>
+		<div class="col-xl-9 mx-auto alert alert-danger" id="select-alert" style="display:none;text-align: center;">
+					请选择编程语言
+		</div>
+		<div class="col-xl-9 mx-auto alert alert-danger" id="tag-alert" style="display:none;text-align: center;">
+					请输入标签
+		</div>
+		<div class="col-xl-9 mx-auto alert alert-danger" id="codearea-alert" style="display:none;text-align: center;">
+					请输入代码
+		</div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Nebulas Code Complete</a>
+				<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">首页</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="template.html">模板</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="#">新建</a>
+					</li>
+				</ul>
+      </div>
+    </nav>
+	
+		<section class="portfolio" id="portfolio">
+			<div class="container">
+					<div class="form-group mb-3">
+						<div class="col-6 col-md-6">
+							<label class="mb-2">编程语言</label>
+							<select class="custom-select mb-auto" id="selector">
+								<option value="ccplus" id="select_ccplus" selected>C/C++</option>
+								<option value="java" id="select_java">Java</option>
+								<option value="csharp" id="select_csharp">C#</option>
+								<option value="python" id="select_python">Python</option>
+								<option value="js" id="select_js">JavaScript</option>
+								<option value="php" id="select_php">PHP</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group mb-3">
+						<div class="col-6">
+							<label class="mb-2">标签</label>
+							<input type="text" class="form-control" id="tag" placeholder="为你的代码创造独一无二的标签~">
+						</div>
+					</div>
+					<div class="form-group mb-3">
+						<div class="col-6">
+							<label class="mb-2">代码区</label>
+							<textarea class="form-control" id="codearea_ccplus" style="min-height: 200px;"></textarea>
+							<textarea class="form-control" id="codearea_csharp" style="min-height: 200px;"></textarea>
+							<textarea class="form-control" id="codearea_java" style="min-height: 200px;"></textarea>
+							<textarea class="form-control" id="codearea_python" style="min-height: 200px;"></textarea>
+							<textarea class="form-control" id="codearea_js" style="min-height: 200px;"></textarea>
+							<textarea class="form-control" id="codearea_php" style="min-height: 200px;"></textarea>
+
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-6">
+							<button class="btn btn-primary col-md-2" id="submit">提交</button>
+							<button class="btn btn-outline-secondary col-md-2 offset-1" id="empty">清空</button>
+						</div>
+					</div>
+			</div>
+		</section>
+		
+		<script src="vendor/codemirror-5.38.0/lib/codemirror.js"></script>
+		<script src="vendor/codemirror-5.38.0/mode/clike/clike.js"></script>
+		<script src="vendor/codemirror-5.38.0/mode/php/php.js"></script>
+		<script src="vendor/codemirror-5.38.0/mode/python/python.js"></script>
+		<script src="vendor/codemirror-5.38.0/mode/javascript/javascript.js"></script>
+			
+		<script type="text/javascript" src="lib/nebulas.js"></script>
+		<script type="text/javascript" src="lib/nebPay.js"></script>
+		<script src="vendor/jquery/jquery.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript">
+			var ccplusTextarea = document.getElementById('codearea_ccplus');
+			var ccplusEditor = CodeMirror.fromTextArea(ccplusTextarea,{
+				mode: "text/x-c++src",
+				// theme: "cobalt",
+				matchBrackets: true,
+				lineNumbers: true
+			});
+
+			var csharpTextarea = document.getElementById('codearea_csharp');
+			var csharpEditor = CodeMirror.fromTextArea(csharpTextarea,{
+				mode: "text/x-csharp",
+				// theme: "cobalt",
+				matchBrackets: true,
+				lineNumbers: true
+			});
+			$(csharpEditor.getWrapperElement()).hide();
+
+			var javaTextarea = document.getElementById('codearea_java');
+			var javaEditor = CodeMirror.fromTextArea(javaTextarea,{
+				mode: "text/x-java",
+				// theme: "cobalt",
+				matchBrackets: true,
+				lineNumbers: true
+			});
+			$(javaEditor.getWrapperElement()).hide();
+
+			var pythonTextarea = document.getElementById('codearea_python');
+			var pythonEditor = CodeMirror.fromTextArea(pythonTextarea,{
+				mode: "text/x-python",
+				mode: "text/x-cython",
+				// theme: "cobalt",
+				matchBrackets: true,
+				lineNumbers: true
+			});
+			$(pythonEditor.getWrapperElement()).hide();
+
+			var jsTextarea = document.getElementById('codearea_js');
+			var jsEditor = CodeMirror.fromTextArea(jsTextarea,{
+				mode: "text/javascript",
+				mode: "text/typescript",
+				// theme: "cobalt",
+				matchBrackets: true,
+				lineNumbers: true
+			});
+			$(jsEditor.getWrapperElement()).hide();
+
+			var phpTextarea = document.getElementById('codearea_php');
+			var phpEditor = CodeMirror.fromTextArea(phpTextarea,{
+				mode: "text/x-php",
+				// theme: "cobalt",
+				matchBrackets: true,
+				lineNumbers: true
+			});
+			$(phpEditor.getWrapperElement()).hide();
+		</script>
+		
+		<script type="text/javascript">
+			$(function(){
+				var clean = localStorage.getItem("clean");
+				if (clean == 'yes') {
+					localStorage.setItem("language","");
+					localStorage.setItem("code","");
+					$("#select_ccplus").attr("selected", "selected");
+				}
+				
+				var language = localStorage.getItem("language");
+				var code = localStorage.getItem("code");
+
+				if (language == 'ccplus') {
+					$("#select_ccplus").attr("selected", "selected");
+					$(ccplusEditor.getWrapperElement()).show();
+					$(csharpEditor.getWrapperElement()).hide();
+					$(javaEditor.getWrapperElement()).hide();
+					$(pythonEditor.getWrapperElement()).hide();
+					$(jsEditor.getWrapperElement()).hide();
+					$(phpEditor.getWrapperElement()).hide();
+					ccplusEditor.getDoc().setValue(code);
+					ccplusEditor.refresh();
+				} else if (language == 'java') {
+					$("#select_java").attr("selected", "selected");
+					$(ccplusEditor.getWrapperElement()).hide();
+					$(csharpEditor.getWrapperElement()).hide();
+					$(javaEditor.getWrapperElement()).show();
+					$(pythonEditor.getWrapperElement()).hide();
+					$(jsEditor.getWrapperElement()).hide();
+					$(phpEditor.getWrapperElement()).hide();
+					javaEditor.getDoc().setValue(code);
+					javaEditor.refresh();
+				} else if (language == 'csharp') {
+					$("#select_csharp").attr("selected", "selected");
+					$(ccplusEditor.getWrapperElement()).hide();
+					$(csharpEditor.getWrapperElement()).show();
+					$(javaEditor.getWrapperElement()).hide();
+					$(pythonEditor.getWrapperElement()).hide();
+					$(jsEditor.getWrapperElement()).hide();
+					$(phpEditor.getWrapperElement()).hide();
+					csharpEditor.getDoc().setValue(code);
+					csharpEditor.refresh();
+				} else if (language == 'python') {
+					$("#select_python").attr("selected", "selected");
+					$(ccplusEditor.getWrapperElement()).hide();
+					$(csharpEditor.getWrapperElement()).hide();
+					$(javaEditor.getWrapperElement()).hide();
+					$(pythonEditor.getWrapperElement()).show();
+					$(jsEditor.getWrapperElement()).hide();
+					$(phpEditor.getWrapperElement()).hide();
+					pythonEditor.getDoc().setValue(code);
+					pythonEditor.refresh();
+				} else if (language == 'js') {
+					$("#select_js").attr("selected", "selected");
+					$(ccplusEditor.getWrapperElement()).hide();
+					$(csharpEditor.getWrapperElement()).hide();
+					$(javaEditor.getWrapperElement()).hide();
+					$(pythonEditor.getWrapperElement()).hide();
+					$(jsEditor.getWrapperElement()).show();
+					$(phpEditor.getWrapperElement()).hide();
+					jsEditor.getDoc().setValue(code);
+					jsEditor.refresh();
+				} else if (language == 'php') {
+					$("#select_php").attr("selected", "selected");
+					$(ccplusEditor.getWrapperElement()).hide();
+					$(csharpEditor.getWrapperElement()).hide();
+					$(javaEditor.getWrapperElement()).hide();
+					$(pythonEditor.getWrapperElement()).hide();
+					$(jsEditor.getWrapperElement()).hide();
+					$(phpEditor.getWrapperElement()).show();
+					phpEditor.getDoc().setValue(code);
+					phpEditor.refresh();
+				}
+			
+			});
+			
+			$("#selector").change(function(){
+				var selectValue = $("#selector").val();
+				if (selectValue == "ccplus") {
+					$(ccplusEditor.getWrapperElement()).show();
+					$(csharpEditor.getWrapperElement()).hide();
+					$(javaEditor.getWrapperElement()).hide();
+					$(pythonEditor.getWrapperElement()).hide();
+					$(jsEditor.getWrapperElement()).hide();
+					$(phpEditor.getWrapperElement()).hide();
+				} else if (selectValue == "csharp") {
+					$(ccplusEditor.getWrapperElement()).hide();
+					$(csharpEditor.getWrapperElement()).show();
+					$(javaEditor.getWrapperElement()).hide();
+					$(pythonEditor.getWrapperElement()).hide();
+					$(jsEditor.getWrapperElement()).hide();
+					$(phpEditor.getWrapperElement()).hide();
+				} else if (selectValue == "java") {
+					$(ccplusEditor.getWrapperElement()).hide();
+					$(csharpEditor.getWrapperElement()).hide();
+					$(javaEditor.getWrapperElement()).show();
+					$(pythonEditor.getWrapperElement()).hide();
+					$(jsEditor.getWrapperElement()).hide();
+					$(phpEditor.getWrapperElement()).hide();
+				} else if (selectValue == "python") {
+					$(ccplusEditor.getWrapperElement()).hide();
+					$(csharpEditor.getWrapperElement()).hide();
+					$(javaEditor.getWrapperElement()).hide();
+					$(pythonEditor.getWrapperElement()).show();
+					$(jsEditor.getWrapperElement()).hide();
+					$(phpEditor.getWrapperElement()).hide();
+				} else if (selectValue == "js") {
+					$(ccplusEditor.getWrapperElement()).hide();
+					$(csharpEditor.getWrapperElement()).hide();
+					$(javaEditor.getWrapperElement()).hide();
+					$(pythonEditor.getWrapperElement()).hide();
+					$(jsEditor.getWrapperElement()).show();
+					$(phpEditor.getWrapperElement()).hide();
+				} else if (selectValue == "php") {
+					$(ccplusEditor.getWrapperElement()).hide();
+					$(csharpEditor.getWrapperElement()).hide();
+					$(javaEditor.getWrapperElement()).hide();
+					$(pythonEditor.getWrapperElement()).hide();
+					$(jsEditor.getWrapperElement()).hide();
+					$(phpEditor.getWrapperElement()).show();
+				}
+			});
+		</script>
+		<script type="text/javascript">
+				var address = "n1t121VcT2b8wahXWM5ZtJbZK1A6XAxbQC2";
+				var nebulas = require("nebulas"), Account = Account, neb = new nebulas.Neb();
+				neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"))
+				
+				var NebPay = require("nebpay");
+				var nebPay = new NebPay();
+				var serialNumber
+				$("#empty").click(function(){
+						$("#selector").val("ccplus");
+						$("tag").val("");
+						ccplusEditor.getDoc().setValue("");
+						ccplusEditor.refresh();
+						javaEditor.getDoc().setValue("");
+						javaEditor.refresh();
+						csharpEditor.getDoc().setValue("");
+						csharpEditor.refresh();
+						pythonEditor.getDoc().setValue("");
+						pythonEditor.refresh();
+						jsEditor.getDoc().setValue("");
+						jsEditor.refresh();
+						phpEditor.getDoc().setValue("");
+						phpEditor.refresh();
+					});
+				$("#submit").click(function(){
+						if (!$("#tag").val()) {
+							$("tag-alert").show();
+							$("#tag-alert").fadeTo(2000, 500).slideUp(500, function(){
+									$("#tag-alert").hide();
+							});
+							return;
+						}
+						
+						var arg3;
+						if ($(ccplusEditor.getWrapperElement()).is(':visible')) {
+							if (!ccplusEditor.getDoc().getValue()) {
+								$("codearea-alert").show();
+								$("#codearea-alert").fadeTo(2000, 500).slideUp(500, function(){
+									$("#codearea-alert").hide();
+								});
+								return;
+							}
+							arg3 = ccplusEditor.getDoc().getValue();
+						} else if($(javaEditor.getWrapperElement()).is(':visible')) {
+							if (!javaEditor.getDoc().getValue()) {
+								$("codearea-alert").show();
+								$("#codearea-alert").fadeTo(2000, 500).slideUp(500, function(){
+									$("#codearea-alert").hide();
+								});
+								return;
+							}
+							arg3 = javaEditor.getDoc().getValue();
+						} else if($(csharpEditor.getWrapperElement()).is(':visible')) {
+							if (!csharpEditor.getDoc().getValue()) {
+								$("codearea-alert").show();
+								$("#codearea-alert").fadeTo(2000, 500).slideUp(500, function(){
+									$("#codearea-alert").hide();
+								});
+								return;
+							}
+							arg3 = csharpEditor.getDoc().getValue();
+						} else if($(pythonEditor.getWrapperElement()).is(':visible')) {
+							if (!pythonEditor.getDoc().getValue()) {
+								$("codearea-alert").show();
+								$("#codearea-alert").fadeTo(2000, 500).slideUp(500, function(){
+									$("#codearea-alert").hide();
+								});
+								return;
+							}
+							arg3 = pythonEditor.getDoc().getValue();
+						} else if($(jsEditor.getWrapperElement()).is(':visible')) {
+							if (!jsEditor.getDoc().getValue()) {
+								$("codearea-alert").show();
+								$("#codearea-alert").fadeTo(2000, 500).slideUp(500, function(){
+									$("#codearea-alert").hide();
+								});
+								return;
+							}
+							arg3 = jsEditor.getDoc().getValue();
+						} else if($(phpEditor.getWrapperElement()).is(':visible')) {
+							if (!phpEditor.getDoc().getValue()) {
+								$("codearea-alert").show();
+								$("#codearea-alert").fadeTo(2000, 500).slideUp(500, function(){
+									$("#codearea-alert").hide();
+								});
+								return;
+							}
+							arg3 = phpEditor.getDoc().getValue();
+						}
+						
+						var to = address;
+						var value = "0";
+						var callFunction = "set";
+						var arg1 = $("#selector").val(),
+								arg2 = $("#tag").val();
+						var callArgs = JSON.stringify([arg1, arg2, arg3]);
+						console.log(callArgs);
+						serialNumber = nebPay.call(to, value, callFunction, callArgs, { 
+							listener: function (resp) {
+								$("#selector").val("ccplus");
+								$("tag").val("");
+								ccplusEditor.getDoc().setValue("");
+								ccplusEditor.refresh();
+								javaEditor.getDoc().setValue("");
+								javaEditor.refresh();
+								csharpEditor.getDoc().setValue("");
+								csharpEditor.refresh();
+								pythonEditor.getDoc().setValue("");
+								pythonEditor.refresh();
+								jsEditor.getDoc().setValue("");
+								jsEditor.refresh();
+								phpEditor.getDoc().setValue("");
+								phpEditor.refresh();
+							}
+						});
+					});
+		</script>
+  </body>
+</html>
