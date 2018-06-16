@@ -9,7 +9,7 @@
     <meta name="author" content="">
 
     <title>Nebulas Code Complete</title>
-
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -36,8 +36,10 @@
 		<div class="col-xl-9 mx-auto alert alert-danger" id="codearea-alert" style="display:none;text-align: center;">
 					请输入代码
 		</div>
+		<div class="col-xl-9 mx-auto alert alert-danger" id="exist-alert" style="display:none;text-align: center;">
+					对（gong）不（xi）起（ni），当前语言的标签已经被抢注了，快去看看TA写了什么吧~
+		</div>
 
-    <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
         <a class="navbar-brand" href="#">Nebulas Code Complete</a>
@@ -111,7 +113,6 @@
 			var ccplusTextarea = document.getElementById('codearea_ccplus');
 			var ccplusEditor = CodeMirror.fromTextArea(ccplusTextarea,{
 				mode: "text/x-c++src",
-				// theme: "cobalt",
 				matchBrackets: true,
 				lineNumbers: true
 			});
@@ -119,7 +120,6 @@
 			var csharpTextarea = document.getElementById('codearea_csharp');
 			var csharpEditor = CodeMirror.fromTextArea(csharpTextarea,{
 				mode: "text/x-csharp",
-				// theme: "cobalt",
 				matchBrackets: true,
 				lineNumbers: true
 			});
@@ -128,7 +128,6 @@
 			var javaTextarea = document.getElementById('codearea_java');
 			var javaEditor = CodeMirror.fromTextArea(javaTextarea,{
 				mode: "text/x-java",
-				// theme: "cobalt",
 				matchBrackets: true,
 				lineNumbers: true
 			});
@@ -138,7 +137,6 @@
 			var pythonEditor = CodeMirror.fromTextArea(pythonTextarea,{
 				mode: "text/x-python",
 				mode: "text/x-cython",
-				// theme: "cobalt",
 				matchBrackets: true,
 				lineNumbers: true
 			});
@@ -148,7 +146,6 @@
 			var jsEditor = CodeMirror.fromTextArea(jsTextarea,{
 				mode: "text/javascript",
 				mode: "text/typescript",
-				// theme: "cobalt",
 				matchBrackets: true,
 				lineNumbers: true
 			});
@@ -157,7 +154,6 @@
 			var phpTextarea = document.getElementById('codearea_php');
 			var phpEditor = CodeMirror.fromTextArea(phpTextarea,{
 				mode: "text/x-php",
-				// theme: "cobalt",
 				matchBrackets: true,
 				lineNumbers: true
 			});
@@ -297,7 +293,7 @@
 				var serialNumber
 				$("#empty").click(function(){
 						$("#selector").val("ccplus");
-						$("tag").val("");
+						$("#tag").val("");
 						ccplusEditor.getDoc().setValue("");
 						ccplusEditor.refresh();
 						javaEditor.getDoc().setValue("");
@@ -377,31 +373,57 @@
 							arg3 = phpEditor.getDoc().getValue();
 						}
 						
-						var to = address;
-						var value = "0";
-						var callFunction = "set";
-						var arg1 = $("#selector").val(),
-								arg2 = $("#tag").val();
-						var callArgs = JSON.stringify([arg1, arg2, arg3]);
-						console.log(callArgs);
-						serialNumber = nebPay.call(to, value, callFunction, callArgs, { 
-							listener: function (resp) {
-								$("#selector").val("ccplus");
-								$("tag").val("");
-								ccplusEditor.getDoc().setValue("");
-								ccplusEditor.refresh();
-								javaEditor.getDoc().setValue("");
-								javaEditor.refresh();
-								csharpEditor.getDoc().setValue("");
-								csharpEditor.refresh();
-								pythonEditor.getDoc().setValue("");
-								pythonEditor.refresh();
-								jsEditor.getDoc().setValue("");
-								jsEditor.refresh();
-								phpEditor.getDoc().setValue("");
-								phpEditor.refresh();
+						var from = address
+						var value1 = "0";
+						var nonce = "0"
+						var gas_price = "1000000"
+						var gas_limit = "2000000"
+						var callFunctionGet = "get";
+						var callArgsGet = "[\"" + $("#selector").val() +"\",\""+ $("#tag").val() + "\"]";
+						var contract = {
+								"function": callFunctionGet,
+								"args": callArgsGet
+						}
+						
+						neb.api.call(from, address, value1, nonce, gas_price, gas_limit, contract).then(function (resp) {
+							var result = resp.result;
+							if (result === 'null') {
+								var to = address;
+								var value2 = "0";
+								var callFunctionSet = "set";
+								var arg1 = $("#selector").val(),
+										arg2 = $("#tag").val();
+								var callArgsSet = JSON.stringify([arg1, arg2, arg3]);
+								
+								serialNumber = nebPay.call(to, value2, callFunctionSet, callArgsSet, { 
+									listener: function (resp) {
+										$("#selector").val("ccplus");
+										$("#tag").val("");
+										ccplusEditor.getDoc().setValue("");
+										ccplusEditor.refresh();
+										javaEditor.getDoc().setValue("");
+										javaEditor.refresh();
+										csharpEditor.getDoc().setValue("");
+										csharpEditor.refresh();
+										pythonEditor.getDoc().setValue("");
+										pythonEditor.refresh();
+										jsEditor.getDoc().setValue("");
+										jsEditor.refresh();
+										phpEditor.getDoc().setValue("");
+										phpEditor.refresh();
+									}
+								});
+
+							} else {
+								$("exist-alert").show();
+								$("#exist-alert").fadeTo(3500, 500).slideUp(500, function(){
+										$("#exist-alert").hide();
+								});
 							}
+							
 						});
+						
+						
 					});
 		</script>
   </body>

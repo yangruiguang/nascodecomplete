@@ -10,6 +10,7 @@
 
     <title>Nebulas Code Complete</title>
 
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -24,8 +25,6 @@
 
   <body>
 		
-		
-    <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
         <a class="navbar-brand" href="#">Nebulas Code Complete</a>
@@ -43,13 +42,11 @@
       </div>
     </nav>
 
-    <!-- Masthead -->
-    <header class="masthead text-white text-center">
+    <header class="masthead bg-primary text-white text-center">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
 					<div class="col-xl-9 mx-auto mb-5">
-						<!--<img src="img/nebulas.png" />-->
             <h1>星云代码大全</h1>
           </div>
           <div class="col-md-10 col-lg-8 col-xl-7 mx-auto mb-4">
@@ -69,7 +66,7 @@
                   <input type="text" class="form-control form-control-lg" id="tag" placeholder="请输入标签">
                 </div>
                 <div class="col-3 col-md-3">
-                  <button class="btn btn-block btn-lg btn-info" id="search">找码</button>
+                  <button class="btn btn-block btn-lg btn-light text-muted" id="search">找码</button>
                 </div>
               </div>
           </div>
@@ -110,29 +107,12 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-            <ul class="list-inline mb-2">
-              <li class="list-inline-item">
-                <a href="#">About</a>
-              </li>
-              <li class="list-inline-item">&sdot;</li>
-              <li class="list-inline-item">
-                <a href="#">Contact</a>
-              </li>
-              <li class="list-inline-item">&sdot;</li>
-              <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
-              </li>
-              <li class="list-inline-item">&sdot;</li>
-              <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
-              </li>
-            </ul>
-            <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2018. All Rights Reserved.</p>
+            <p class="text-muted mb-4 mb-lg-0">星云代码大全是基于区块链的代码共享应用，你可以将喜爱的代码保存到星云链中，并打上独一无二的标签，支持目前主流的编程语言哦！同时，你也可以大开脑洞，输入可能存在的标签查找别人的代码，说不定会有意外发现呢！快快加入星云代码大全，分享你的第一份代码吧！</p>
           </div>
           <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
             <ul class="list-inline mb-0">
               <li class="list-inline-item mr-3">
-                <h3>Powered by</h3>
+                <h3 class="text-muted">Powered by</h3>
               </li>
               <li class="list-inline-item mr-3">
                 <img src="img/nebulas.png">
@@ -154,11 +134,11 @@
 		<script type="text/javascript">
 			var clipboard = new ClipboardJS('#copyButton');
 			clipboard.on('success', function(e) {
-				e.clearSelection();
 				$("[data-toggle='popover']").popover();
 				$("[data-toggle='popover']").on('mouseleave', function(){
 					$("[data-toggle='popover']").popover('hide');
 				});
+				e.clearSelection();
 			});
 			clipboard.on('error', function(e) {
 				
@@ -203,7 +183,6 @@
 					
 					neb.api.call(from, address, value, nonce, gas_price, gas_limit, contract).then(function (resp) {
 						var result = resp.result;
-						console.log(result);
 						if (result === 'null') {
                 $("#result-alert").show();
 								$("#result-alert").fadeTo(2000, 500).slideUp(500, function(){
@@ -235,7 +214,6 @@
 							var pre_content = '<code class="language-'+lan_class+'">'+result.content+'</code>';
 							$("#codefield").html(pre_content);
 							Prism.highlightAll();
-							console.log(pre_content);
 							
 						});
 
